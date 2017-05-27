@@ -1,0 +1,12 @@
+<p>
+	<strong>Question:</strong>
+	<%= @question.ques %>
+</p>
+
+<p>
+	<strong>Categories:</strong>
+	<%= raw @question.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+</p>
+
+
+<%= link_to "Home", pages_index_path %>
