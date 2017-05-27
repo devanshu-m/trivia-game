@@ -6,11 +6,19 @@
 
 <h1>Choose a category</h1>
 
-
+<div>
 <% tag_cloud Question.tag_counts, %w[s m l] do |tag, css_class| %>
     <%= link_to tag.name, {:controller => "trivia", :action => "start", :tag => tag.name}, class: css_class %>
     <br>
 <% end %>
+</div>
+
+<br>
+
+<div>
+<%= link_to "Answer all questions", {:controller => "trivia", :action => "allquestions"} %>
+</div>
+<br>
 
 
 <%= link_to "Home", pages_index_path %>

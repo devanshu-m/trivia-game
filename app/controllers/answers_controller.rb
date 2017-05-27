@@ -10,7 +10,9 @@ class AnswersController < ApplicationController
 			session[:answer] = @answer.submitted_ans
 			redirect_to trivia_score_url
 		else
-			render 'show'
+			redirect_to trivia_question_path
+#			session[:count] -=1
+			flash[:notice] = "Answer can't be blank"
 		end
 	end
 

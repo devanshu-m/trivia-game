@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'trivia/question'
   get 'trivia/score'
   post 'trivia/question'
+  get 'trivia/allquestions'
 
   root 'pages#index'
   # The priority is based upon order of creation: first created -> highest priority.

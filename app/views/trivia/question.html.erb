@@ -1,6 +1,7 @@
 <% if user_signed_in? %>
 <h1>User score is <%= current_user.score %></h1>
 <%end%>
+
 <p>
 	<strong>Question:</strong>
 	<%= @question.ques %>
@@ -17,7 +18,20 @@
   | <%= link_to "down", vote_question_path(session[:q], type: "down"), method: "post" %>
 <% end %>
 
+
+<% if @answer.present? %>
+<h1>You have already answered this question</h1>
+
+<% session[:count] += 1 %>
+
+<%= form_tag({:controller => "trivia", :action => "question"}) do %>
+	<%= submit_tag("Next question") %>
+<%end%>
+<%else%>
 <h2>Your answer:</h2>
 
 <%= render 'answers/form' %>
+<%end%>
+
+<%= link_to "Home", pages_index_path %>
 

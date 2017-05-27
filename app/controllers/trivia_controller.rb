@@ -19,6 +19,19 @@ class TriviaController < ApplicationController
 		redirect_to :action => "question"
 	end
 
+	def allquestions
+		allq = Question.where.not(user: current_user).map {|q| q.id}
+		session[:c] = allq.count
+		c = session[:c]
+
+		session[:questions] = allq.sort_by{rand}[0...c]
+
+		session[:count] = 0
+
+		redirect_to :action => "question"
+	end
+
+
 	def question
 		@count = session[:count]
 		c = session[:c]
@@ -27,9 +40,12 @@ class TriviaController < ApplicationController
 			@question = Question.find(session[:questions][@count])
 			session[:question] = @question.correct_ans
 			session[:q] = @question
+			@answer = Answer.select("user_id", "question_id").where(user: current_user, question: @question)
 		else
 			render 'thankyou'
 		end
+
+#		session[:count] +=1
 	end
 
 	def score
