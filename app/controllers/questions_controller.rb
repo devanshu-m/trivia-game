@@ -1,8 +1,10 @@
 class QuestionsController < ApplicationController
 
+	before_action :authenticate_user!
+
 
 	def create
-		@question = Question.new(question_params)
+		@question = current_user.questions.new(question_params)
 
 		respond_to do |format|
 			if @question.save
