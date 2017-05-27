@@ -1,0 +1,18 @@
+<% if user_signed_in? %>
+<h1>User score is <%= current_user.score %></h1>
+<%end%>
+<p>
+	<strong>Question:</strong>
+	<%= @question.ques %>
+</p>
+
+<p>
+	<strong>Category:</strong>
+	<%= @question.tag_list %>
+</p>
+
+
+<h2>Your answer:</h2>
+
+<%= render 'answers/form' %>
+

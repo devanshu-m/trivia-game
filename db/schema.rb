@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170527184755) do
+ActiveRecord::Schema.define(version: 20170527190938) do
 
   create_table "answers", force: :cascade do |t|
     t.string   "submitted_ans"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20170527184755) do
     t.datetime "updated_at",                          null: false
     t.string   "first_name"
     t.string   "last_name"
+    t.integer  "score",                  default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

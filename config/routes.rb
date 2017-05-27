@@ -6,7 +6,16 @@ Rails.application.routes.draw do
 
   get 'tags/:tag', to: 'questions#index', as: :tag
 
-  resources :questions
+  resources :questions do
+    resources :answers
+  end
+
+  get 'trivia/index'
+  post 'trivia/start'
+  get 'trivia/start'
+  get 'trivia/question'
+  get 'trivia/score'
+  post 'trivia/question'
 
   root 'pages#index'
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,7 @@
+<%= form_for [@question, Answer.new] do |a| %>
+	<% if @answer && @answer.errors.any? %>
+    	<% @answer.errors.full_messages.each do |msg| %>
+     		<li><%= msg %></li>
+		<% end %>
+	<%end%>
+<% end %>

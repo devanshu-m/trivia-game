@@ -1,0 +1,21 @@
+<% if session[:question].downcase.include? session[:answer].downcase || session[:question].downcase.match(session[:answer].downcase) %>
+	<h1>Answer is correct</h1>
+	<h1>User score is</h1>
+	<%= current_user.score %>
+	Correct:<%= session[:question] %>
+	Your:<%= session[:answer] %>
+<% else %>
+	<h1>Answer is incorrect</h1>
+	<h1>User score is</h1>
+	<%= current_user.score %>
+	<%= session[:question] %>
+	<%= session[:answer] %>
+<%end%>
+
+<%= form_tag({:controller => "trivia", :action => "question"}) do %>
+	<%= submit_tag("Next question") %>
+<%end%>
+
+<% session[:count] + 1 %> 
+
+<%= link_to "Home", pages_index_path %>

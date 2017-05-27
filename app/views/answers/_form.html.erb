@@ -1,0 +1,12 @@
+<%= form_for ([@question, @question.answers.build]) do |a| %>
+<p>
+	<%= a.label "Enter your answer" %><br>
+	<%= a.text_field :submitted_ans %>
+</p>
+
+<p>
+	<%= a.submit "Submit answer" %>
+</p>
+<%end%>
+
+<%= link_to "Home", pages_index_path %>
