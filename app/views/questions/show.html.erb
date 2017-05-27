@@ -8,5 +8,11 @@
 	<%= raw @question.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
 </p>
 
+<% if current_user == @question.user %>
+<p>
+	<strong>Answer:</strong>
+	<%= @question.correct_ans %>
+</p>
+<%end%>
 
 <%= link_to "Home", pages_index_path %>

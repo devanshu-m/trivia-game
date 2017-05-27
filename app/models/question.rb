@@ -4,4 +4,6 @@ class Question < ActiveRecord::Base
 	validates :correct_ans, presence: true
 
 	belongs_to :user
+
+	acts_as_taggable
 end

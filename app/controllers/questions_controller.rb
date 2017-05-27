@@ -26,11 +26,15 @@ class QuestionsController < ApplicationController
 	end
 
 	def index
-		@question = Question.all
+		if params[:tag]
+			@question = Question.tagged_with(params[:tag])
+		else
+			@question = Question.all
+		end
 	end
 
 	private
 		def question_params
-			params.require(:question).permit(:ques, :correct_ans)
+			params.require(:question).permit(:ques, :correct_ans, :tag_list)
 		end
 end

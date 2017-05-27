@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   get 'pages/index'
 
+  get 'tags/:tag', to: 'questions#index', as: :tag
+
   resources :questions
 
   root 'pages#index'

@@ -46,4 +46,5 @@ group :development do
 end
 
 gem 'devise', '~> 4.2'
+gem 'acts-as-taggable-on'
 
