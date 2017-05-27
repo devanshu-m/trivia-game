@@ -11,6 +11,11 @@
 	<%= @question.tag_list %>
 </p>
 
+| <%= pluralize session[:q].reputation_for(:votes).to_i, "vote" %>
+<% if current_user && !current_user.voted_for?(session[:q]) %>
+  | <%= link_to "up", vote_question_path(session[:q], type: "up"), method: "post" %>
+  | <%= link_to "down", vote_question_path(session[:q], type: "down"), method: "post" %>
+<% end %>
 
 <h2>Your answer:</h2>
 

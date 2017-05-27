@@ -47,4 +47,5 @@ end
 
 gem 'devise', '~> 4.2'
 gem 'acts-as-taggable-on'
+gem 'activerecord-reputation-system', require: 'reputation_system'
 

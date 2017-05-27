@@ -8,5 +8,7 @@ class Question < ActiveRecord::Base
 
 	has_many :answers
 
+	has_reputation :votes, source: :user, aggregated_by: :sum
+
 	acts_as_taggable
 end

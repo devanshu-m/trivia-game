@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :questions do
     resources :answers
+    member { post :vote }
   end
 
   get 'trivia/index'
