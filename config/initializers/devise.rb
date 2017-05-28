@@ -13,7 +13,7 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
 
-  config.omniauth :facebook, "300512283724028", "8478740bdce2e5d3f257ab8230e8a59d", callback_url: "http://localhost:3002/users/auth/facebook/callback", scope: "email", info_fields: 'email, first_name, last_name'
+  config.omniauth :facebook, "300512283724028", "8478740bdce2e5d3f257ab8230e8a59d", callback_url: "https://devanshu-trivia.herokuapp.com/users/auth/facebook/callback", scope: "email", info_fields: 'email, first_name, last_name'
 
 
 
