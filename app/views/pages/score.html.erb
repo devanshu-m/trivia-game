@@ -1,0 +1,25 @@
+<% if user_signed_in? %>
+<h1>User score is <%= current_user.score %></h1>
+<%end%>
+
+<h1>All user scores</h1>
+
+<table class="table table-hover">
+<tr>
+	<th>User</th>
+	<th>Score</th>
+</tr>
+
+
+<% @user.each do |u| %>
+<tr>
+	<td><%= u.email %></td>
+	<td><%= u.score %>
+</tr>
+<% end %>
+</table>
+<br>
+
+<div>Average score of all users= <%= User.average(:score) %></div>
+
+<%= link_to "Home", pages_index_path %>

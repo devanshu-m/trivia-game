@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
 
   get 'pages/index'
+  get 'pages/score'
 
   get 'tags/:tag', to: 'questions#index', as: :tag
 
