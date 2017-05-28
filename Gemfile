@@ -48,4 +48,7 @@ end
 gem 'devise', '~> 4.2'
 gem 'acts-as-taggable-on'
 gem 'activerecord-reputation-system', require: 'reputation_system'
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
+gem 'omniauth'
+gem 'omniauth-facebook'
 

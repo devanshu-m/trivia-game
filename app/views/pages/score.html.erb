@@ -1,6 +1,3 @@
-<% if user_signed_in? %>
-<h1>User score is <%= current_user.score %></h1>
-<%end%>
 
 <h1>All user scores</h1>
 
@@ -13,7 +10,7 @@
 
 <% @user.each do |u| %>
 <tr>
-	<td><%= u.email %></td>
+	<td><%= u.first_name %></td>
 	<td><%= u.score %>
 </tr>
 <% end %>

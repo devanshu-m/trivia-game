@@ -1,12 +1,12 @@
 <% if user_signed_in? %>
-<h1>User score is <%= current_user.score %></h1>
+<h1>Your score is <%= current_user.score %></h1>
 <%end%>
 
-<h1>Trivia</h1>
+<h1 style="text-align:center">Trivia</h1>
 
-<h1>Choose a category</h1>
+<h1 style="text-align:center">Choose a category</h1>
 
-<div>
+<div style="text-align:center">
 <% tag_cloud Question.tag_counts, %w[s m l] do |tag, css_class| %>
     <%= link_to tag.name, {:controller => "trivia", :action => "start", :tag => tag.name}, class: css_class %>
     <br>
@@ -15,12 +15,12 @@
 
 <br>
 
-<div>
+<div style="text-align:center">
 <%= link_to "Answer all questions", {:controller => "trivia", :action => "allquestions"} %>
 </div>
 <br>
 
 
-<div><%= link_to "Trivia homepage", trivia_index_path %></div>
-<div><%= link_to "Main homepage", pages_index_path %></div>
+<div style="text-align:center"><%= link_to "Trivia homepage", trivia_index_path %></div>
+<div style="text-align:center"><%= link_to "Main homepage", pages_index_path %></div>
 
