@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get 'pages/index'
   get 'pages/score'
+  get 'pages/about'
 
   get 'tags/:tag', to: 'questions#index', as: :tag
 

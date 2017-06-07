@@ -1,0 +1,19 @@
+<h2>About this app</h2>
+
+<p>This app is developed and maintained by <%= link_to 'https://devanshu-m.herokuapp.com/', target: "_blank" do %> Devanshu Matlawala </p><%end%>
+
+<p>Functionalities:</p>
+<ol>
+<li>Users can create new trivia questions or take a trivia and answer questions submitted by other users to gain points.</li>
+<li>New users can sign up and existing users can sign in. Users will need to be authenticated before they can submit a new trivia question or take the trivia. Authentication is done using the devise gem. Authentication using Facebook is also implemented and available.</li>
+<li>Registered users can create new trivia questions. Users need to provide a correct answer and the category(ies) the question falls in.</li>
+<li>Registered users can choose a category to answer questions in that category or choose to answer all questions. Every correct answer will add 4 points to their score; every wrong answer will deduct 1 point from their score. After answering a question, the user can see their answer along with the original answer submitted by the question creator.</li>
+<li>Users can choose to vote for questions (this is implemented using a reputation system).</li>
+<li>Users cannot answer their own questions. They can only see questions from other users.</li>
+<li>Users cannot answer any question more than once.</li>
+<li>Home page has options to create a new trivia question, play trivia, or view user scores.</li>
+<li>Gems used:
+Devise, Omniauth, Omniauth-facebook, Bootstrap-sass, acts-as-taggable-on, activerecord-reputation-system, postgreSQL (for heroku)
+</li>
+</li>
+</ol>
