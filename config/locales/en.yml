@@ -21,3 +21,10 @@
 
 en:
   hello: "Hello world"
+
+en:
+  activerecord:
+    attributes:
+      questions:
+        ques: "Question"
+        correct_ans: "Correct option"

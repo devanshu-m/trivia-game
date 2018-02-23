@@ -7,9 +7,9 @@
 <%# a.hidden_field :answered, value: 1 %>
 
 <%= a.radio_button :submitted_ans, "#{@question.option1}" %> 
-<%= label :submitted_ans, "#{@question.option1}" %><br>
+<%= label :submitted_ans_label, "#{@question.option1}" %><br>
 <%= a.radio_button :submitted_ans, "#{@question.option2}" %>
-<%= label :submitted_ans, "#{@question.option2}" %>
+<%= label :submitted_ans_label, "#{@question.option2}" %>
 
 <p>
 	<%# a.label "Enter your answer" %><br>

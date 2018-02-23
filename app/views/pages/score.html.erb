@@ -9,7 +9,7 @@
 
 <% @user.each do |u| %>
 <tr>
-	<td><%= u.first_name %></td>
+	<td><%= u.first_name %> <%= u.last_name %></td>
 	<td><%= u.score %>
 </tr>
 <% end %>

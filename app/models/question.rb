@@ -3,6 +3,7 @@ class Question < ActiveRecord::Base
 	before_save :assign_answer
 
 	validates :ques, presence: true
+	validates_presence_of :option1, :option2
 	validates :correct_ans, presence: true
 	validates :tag_list, presence: true
 
