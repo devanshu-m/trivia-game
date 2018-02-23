@@ -12,10 +12,22 @@
   <%= render 'layouts/header' %>
 </header>
 
-<% if notice %><p class="alert alert-info"><%= notice %></p><% end %>
-<% if alert %><p class="alert alert-warning"><%= alert %></p><% end %>
+<% if notice %><p class="alert alert-info"><%= flash[:notice] %></p><% end %>
+<% if alert %><p class="alert alert-warning"><%= flash[:alert] %></p><% end %>
 
-<%= yield %>
+<!--<div align="center">-->
+<div class="modal-dialog modal-lg" style="width: 90%">
+  <div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">
+          <div class="modal-body">
+			<%= yield %>
+		  </div>
+		</h4>
+	</div>
+  </div>
+</div>
+<!--</div>-->
 
 </body>
 </html>

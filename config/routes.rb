@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { registrations: 'registrations', :omniauth_callbacks => 'users/omniauth_callbacks'}
 
-  get 'pages/index'
+  get 'pages/index' => 'pages#index', as: :pages_index
   get 'pages/score'
   get 'pages/about'
 

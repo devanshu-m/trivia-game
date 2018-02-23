@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.3.3'
+#ruby '2.3.3'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -37,6 +37,7 @@ group :development, :test do
   gem 'byebug'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+  gem 'mysql2', '~> 0.3.18'
 end
 
 group :development do

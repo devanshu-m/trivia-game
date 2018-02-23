@@ -9,6 +9,15 @@ class TriviaController < ApplicationController
 	def start
 		allq = Question.tagged_with(params[:tag])
 		questions = allq.where.not(user: current_user).map {|x| x.id}
+		allans = Answer.where(user: current_user).pluck(:question_id)
+		#allq = []
+		allans.each do |q|
+			if questions.include?(q)
+				questions.delete(q)
+			#else
+			#	allq.push(q)
+			end
+		end
 		session[:c] = questions.count
 		c = session[:c]
 
@@ -21,6 +30,15 @@ class TriviaController < ApplicationController
 
 	def allquestions
 		allq = Question.where.not(user: current_user).map {|q| q.id}
+		allans = Answer.where(user: current_user).pluck(:question_id)
+		#allq = []
+		allans.each do |q|
+			if allq.include?(q)
+				allq.delete(q)
+			#else
+			#	allq.push(q)
+			end
+		end
 		session[:c] = allq.count
 		c = session[:c]
 
@@ -53,7 +71,7 @@ class TriviaController < ApplicationController
 
 		s = current_user.score
 
-		if session[:question].downcase.include? session[:answer].downcase || session[:question].downcase.match(session[:answer].downcase)
+		if session[:question].downcase.eql? session[:answer].downcase #|| session[:question].downcase.match(session[:answer].downcase)
 			s +=4
 			session[:score] = s
 		else

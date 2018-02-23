@@ -20,8 +20,21 @@
 </p>
 
 <p>
-  <%= q.label "Enter correct answer" %><br>
-  <%= q.text_field :correct_ans %>
+  <%= q.label "Option 1:" %><br>
+  <%= q.text_field :option1 %><br>
+</p>
+
+<p>
+  <%= q.label "Option 2:" %><br>
+  <%= q.text_field :option2 %><br>
+</p>
+
+<p>
+  <%= q.label "Select correct option" %><br>
+  <%= q.radio_button :correct_ans, "1" %> 
+  <%= label :correct_ans, "Option 1" %><br>
+  <%= q.radio_button :correct_ans, "2" %>
+  <%= label :correct_ans, "Option 2" %>
 </p>
 
 <p>

@@ -11,124 +11,129 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170528034519) do
+ActiveRecord::Schema.define(version: 20180223052653) do
 
   create_table "answers", force: :cascade do |t|
-    t.string   "submitted_ans"
-    t.integer  "question_id"
-    t.integer  "user_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "submitted_ans", limit: 255
+    t.integer  "question_id",   limit: 4
+    t.integer  "user_id",       limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "answered",      limit: 4
   end
 
-  add_index "answers", ["question_id"], name: "index_answers_on_question_id"
-  add_index "answers", ["user_id"], name: "index_answers_on_user_id"
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+  add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
 
   create_table "questions", force: :cascade do |t|
-    t.string   "ques"
-    t.string   "correct_ans"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "tag_list"
-    t.integer  "user_id"
+    t.string   "ques",        limit: 255
+    t.string   "correct_ans", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "user_id",     limit: 4
+    t.string   "option1",     limit: 255
+    t.string   "option2",     limit: 255
+    t.string   "option3",     limit: 255
+    t.string   "option4",     limit: 255
+    t.string   "answered",    limit: 255
   end
 
   create_table "rs_evaluations", force: :cascade do |t|
-    t.string   "reputation_name"
-    t.integer  "source_id"
-    t.string   "source_type"
-    t.integer  "target_id"
-    t.string   "target_type"
-    t.float    "value",           default: 0.0
+    t.string   "reputation_name", limit: 255
+    t.integer  "source_id",       limit: 4
+    t.string   "source_type",     limit: 255
+    t.integer  "target_id",       limit: 4
+    t.string   "target_type",     limit: 255
+    t.float    "value",           limit: 24,    default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "data"
+    t.text     "data",            limit: 65535
   end
 
-  add_index "rs_evaluations", ["reputation_name", "source_id", "source_type", "target_id", "target_type"], name: "index_rs_evaluations_on_reputation_name_and_source_and_target", unique: true
-  add_index "rs_evaluations", ["reputation_name"], name: "index_rs_evaluations_on_reputation_name"
-  add_index "rs_evaluations", ["source_id", "source_type"], name: "index_rs_evaluations_on_source_id_and_source_type"
-  add_index "rs_evaluations", ["target_id", "target_type"], name: "index_rs_evaluations_on_target_id_and_target_type"
+  add_index "rs_evaluations", ["reputation_name", "source_id", "source_type", "target_id", "target_type"], name: "index_rs_evaluations_on_reputation_name_and_source_and_target", unique: true, using: :btree
+  add_index "rs_evaluations", ["reputation_name"], name: "index_rs_evaluations_on_reputation_name", using: :btree
+  add_index "rs_evaluations", ["source_id", "source_type"], name: "index_rs_evaluations_on_source_id_and_source_type", using: :btree
+  add_index "rs_evaluations", ["target_id", "target_type"], name: "index_rs_evaluations_on_target_id_and_target_type", using: :btree
 
   create_table "rs_reputation_messages", force: :cascade do |t|
-    t.integer  "sender_id"
-    t.string   "sender_type"
-    t.integer  "receiver_id"
-    t.float    "weight",      default: 1.0
+    t.integer  "sender_id",   limit: 4
+    t.string   "sender_type", limit: 255
+    t.integer  "receiver_id", limit: 4
+    t.float    "weight",      limit: 24,  default: 1.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "rs_reputation_messages", ["receiver_id", "sender_id", "sender_type"], name: "index_rs_reputation_messages_on_receiver_id_and_sender", unique: true
-  add_index "rs_reputation_messages", ["receiver_id"], name: "index_rs_reputation_messages_on_receiver_id"
-  add_index "rs_reputation_messages", ["sender_id", "sender_type"], name: "index_rs_reputation_messages_on_sender_id_and_sender_type"
+  add_index "rs_reputation_messages", ["receiver_id", "sender_id", "sender_type"], name: "index_rs_reputation_messages_on_receiver_id_and_sender", unique: true, using: :btree
+  add_index "rs_reputation_messages", ["receiver_id"], name: "index_rs_reputation_messages_on_receiver_id", using: :btree
+  add_index "rs_reputation_messages", ["sender_id", "sender_type"], name: "index_rs_reputation_messages_on_sender_id_and_sender_type", using: :btree
 
   create_table "rs_reputations", force: :cascade do |t|
-    t.string   "reputation_name"
-    t.float    "value",           default: 0.0
-    t.string   "aggregated_by"
-    t.integer  "target_id"
-    t.string   "target_type"
-    t.boolean  "active",          default: true
+    t.string   "reputation_name", limit: 255
+    t.float    "value",           limit: 24,    default: 0.0
+    t.string   "aggregated_by",   limit: 255
+    t.integer  "target_id",       limit: 4
+    t.string   "target_type",     limit: 255
+    t.boolean  "active",                        default: true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "data"
+    t.text     "data",            limit: 65535
   end
 
-  add_index "rs_reputations", ["reputation_name", "target_id", "target_type"], name: "index_rs_reputations_on_reputation_name_and_target", unique: true
-  add_index "rs_reputations", ["reputation_name"], name: "index_rs_reputations_on_reputation_name"
-  add_index "rs_reputations", ["target_id", "target_type"], name: "index_rs_reputations_on_target_id_and_target_type"
+  add_index "rs_reputations", ["reputation_name", "target_id", "target_type"], name: "index_rs_reputations_on_reputation_name_and_target", unique: true, using: :btree
+  add_index "rs_reputations", ["reputation_name"], name: "index_rs_reputations_on_reputation_name", using: :btree
+  add_index "rs_reputations", ["target_id", "target_type"], name: "index_rs_reputations_on_target_id_and_target_type", using: :btree
 
   create_table "taggings", force: :cascade do |t|
-    t.integer  "tag_id"
-    t.integer  "taggable_id"
-    t.string   "taggable_type"
-    t.integer  "tagger_id"
-    t.string   "tagger_type"
+    t.integer  "tag_id",        limit: 4
+    t.integer  "taggable_id",   limit: 4
+    t.string   "taggable_type", limit: 255
+    t.integer  "tagger_id",     limit: 4
+    t.string   "tagger_type",   limit: 255
     t.string   "context",       limit: 128
     t.datetime "created_at"
   end
 
-  add_index "taggings", ["context"], name: "index_taggings_on_context"
-  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
-  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id"
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
-  add_index "taggings", ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy"
-  add_index "taggings", ["taggable_id"], name: "index_taggings_on_taggable_id"
-  add_index "taggings", ["taggable_type"], name: "index_taggings_on_taggable_type"
-  add_index "taggings", ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type"
-  add_index "taggings", ["tagger_id"], name: "index_taggings_on_tagger_id"
+  add_index "taggings", ["context"], name: "index_taggings_on_context", using: :btree
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy", using: :btree
+  add_index "taggings", ["taggable_id"], name: "index_taggings_on_taggable_id", using: :btree
+  add_index "taggings", ["taggable_type"], name: "index_taggings_on_taggable_type", using: :btree
+  add_index "taggings", ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type", using: :btree
+  add_index "taggings", ["tagger_id"], name: "index_taggings_on_tagger_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
-    t.string  "name"
-    t.integer "taggings_count", default: 0
+    t.string  "name",           limit: 255
+    t.integer "taggings_count", limit: 4,   default: 0
   end
 
-  add_index "tags", ["name"], name: "index_tags_on_name", unique: true
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "",   null: false
-    t.string   "encrypted_password",     default: "",   null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,    null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.string   "first_name"
-    t.string   "last_name"
-    t.integer  "score",                  default: 0
-    t.boolean  "flag",                   default: true
-    t.integer  "streak",                 default: 0
-    t.string   "uid"
-    t.string   "provider"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.string   "first_name",             limit: 255
+    t.string   "last_name",              limit: 255
+    t.integer  "user_id",                limit: 4
+    t.integer  "score",                  limit: 4,   default: 0
+    t.string   "uid",                    limit: 255
+    t.string   "provider",               limit: 255
+    t.integer  "question_id",            limit: 4
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

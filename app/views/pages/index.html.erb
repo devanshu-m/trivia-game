@@ -1,3 +1,4 @@
+
 <% if user_signed_in? %>
 <h1>Your score is <%= current_user.score %></h1>
 <%end%>
@@ -7,3 +8,4 @@
 <div id="new question", style="text-align:center"><%= link_to "Create new trivia question?", new_question_path %></div><br>
 <div style="text-align:center"><%= link_to "Play Trivia", trivia_index_path %></div><br>
 <div style="text-align:center"><%= link_to "User scores", pages_score_path %></div>
+
