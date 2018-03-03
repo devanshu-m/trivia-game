@@ -54,6 +54,6 @@ gem 'activerecord-reputation-system', require: 'reputation_system'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'pg'
+gem 'pg', '~> 0.15'
 gem 'rails_12factor', group: :production
 
